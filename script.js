@@ -214,6 +214,7 @@ const animateVRM = (vrm, results) => {
     rigRotation("RightLowerLeg", riggedPose.RightLowerLeg, 1, .3);
   }
 
+  console.log("leftHandLandmarks",leftHandLandmarks);
   console.log("left",Kalidokit.Hand.solve(leftHandLandmarks, "Left"));
   
   // Animate Hands
