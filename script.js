@@ -156,6 +156,7 @@ const rigFace = (riggedFace) => {
 
 /* VRM Character Animator */
 const animateVRM = (vrm, results) => {
+  console.log("animateVRM res",results);
   if (!vrm) {
     return;
   }   
