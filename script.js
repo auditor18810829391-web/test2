@@ -213,7 +213,7 @@ const animateVRM = (vrm, results) => {
   }
 
   // Animate Hands
-  if (leftHandLandmarks) {
+  if (0) { // leftHandLandmarks
     riggedLeftHand = Kalidokit.Hand.solve(leftHandLandmarks, "Left");
     rigRotation("LeftHand", {
       // Combine pose rotation Z and hand rotation X Y
@@ -237,7 +237,7 @@ const animateVRM = (vrm, results) => {
     rigRotation("LeftLittleIntermediate", riggedLeftHand.LeftLittleIntermediate);
     rigRotation("LeftLittleDistal", riggedLeftHand.LeftLittleDistal);
   }
-  if (rightHandLandmarks) {
+  if (0) { // rightHandLandmarks
     riggedRightHand = Kalidokit.Hand.solve(rightHandLandmarks, "Right");
     rigRotation("RightHand", {
       // Combine Z axis from pose hand and X/Y axis from hand wrist rotation
