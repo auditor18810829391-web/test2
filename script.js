@@ -181,11 +181,13 @@ const animateVRM = (vrm, results) => {
   }
 
   // Animate Pose
+  console.log("pose2DLandmarks && pose3DLandmarks",pose2DLandmarks , pose3DLandmarks);
   if (pose2DLandmarks && pose3DLandmarks) {
     riggedPose = Kalidokit.Pose.solve(pose3DLandmarks, pose2DLandmarks, {
       runtime: "mediapipe",
       video:videoElement,
     });
+    console.log("riggedPose",riggedPose);
     rigRotation("Hips", riggedPose.Hips.rotation, 0.7);
     rigPosition(
       "Hips",
@@ -213,6 +215,7 @@ const animateVRM = (vrm, results) => {
   }
 
   console.log("left",Kalidokit.Hand.solve(leftHandLandmarks, "Left"));
+  
   // Animate Hands
   if (0) { // leftHandLandmarks
     riggedLeftHand = Kalidokit.Hand.solve(leftHandLandmarks, "Left");
