@@ -1,12 +1,13 @@
 const { app, BrowserWindow, screen } = require('electron'); // 👈 注意：引入 screen
 const path = require('path');
+const { width, height } = primaryDisplay.workAreaSize;
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 1280,
-    height: 720,
+    width: Math.floor(width * 0.15),
+    height: Math.floor(height * 0.15),
     frame: false,
-    transparent: true,
+    transparent: false,
     resizable: true,
     alwaysOnTop: true,
     webPreferences: {
