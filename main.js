@@ -2,27 +2,33 @@ const { app, BrowserWindow, screen } = require('electron');
 const path = require('path');
 
 function createWindow() {
-  // 获取主显示器的可用工作区域尺寸
-  const { width: screenWidth, height: screenHeight } = screen.getPrimaryDisplay().workAreaSize;
+  const primaryDisplay = screen.getPrimaryDisplay();
+  const { x, y, width: screenWidth, height: screenHeight } = primaryDisplay.workArea;
 
-  // 设置窗口为屏幕可用区域的 80%
-  const winWidth = Math.round(screenWidth * 0.15);
-  const winHeight = Math.round(screenHeight * 0.15);
+  // 窗口尺寸：屏幕可用区域的 80%
+  const winWidth = Math.round(screenWidth * 0.2);
+  const winHeight = Math.round(screenHeight * 0.2);
+
+  // 计算窗口左上角坐标，使其右下角对齐屏幕右下角
+  const winX = x + screenWidth - winWidth; // 右对齐
+  const winY = y + screenHeight - winHeight; // 下对齐
 
   const win = new BrowserWindow({
+    x: winX,
+    y: winY,
     width: winWidth,
     height: winHeight,
-    frame: false,          // 无边框
-    transparent: true,     // 透明窗口
-    resizable: true,       // 可缩放
-    alwaysOnTop: true,     // 总在最前（可选）
+    frame: false,
+    transparent: true,
+    resizable: true,
+    alwaysOnTop: true,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false
     }
   });
 
-  win.loadFile('index.html'); // 加载你的 HTML 文件
+  win.loadFile('index.html');
 }
 
 app.whenReady().then(createWindow);
