@@ -1,5 +1,6 @@
 const { app, BrowserWindow, screen } = require('electron'); // 👈 注意：引入 screen
 const path = require('path');
+const primaryDisplay = screen.getPrimaryDisplay();
 const { width, height } = primaryDisplay.workAreaSize;
 
 function createWindow() {
