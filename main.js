@@ -1,38 +1,28 @@
-const { app, BrowserWindow, screen } = require('electron'); // 👈 注意：引入 screen
+const { app, BrowserWindow, screen } = require('electron');
 const path = require('path');
-const primaryDisplay = screen.getPrimaryDisplay();
-const { width, height } = primaryDisplay.workAreaSize;
 
 function createWindow() {
+  // 获取主显示器的可用工作区域尺寸
+  const { width: screenWidth, height: screenHeight } = screen.getPrimaryDisplay().workAreaSize;
+
+  // 设置窗口为屏幕可用区域的 80%
+  const winWidth = Math.round(screenWidth * 0.15);
+  const winHeight = Math.round(screenHeight * 0.15);
+
   const win = new BrowserWindow({
-    width: Math.floor(width * 0.15),
-    height: Math.floor(height * 0.15),
-    frame: false,
-    transparent: false,
-    resizable: true,
-    alwaysOnTop: true,
+    width: winWidth,
+    height: winHeight,
+    frame: false,          // 无边框
+    transparent: true,     // 透明窗口
+    resizable: true,       // 可缩放
+    alwaysOnTop: true,     // 总在最前（可选）
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false
     }
   });
 
-  win.loadFile('index.html');
-
-  // 等待窗口内容加载完成后再设置位置（可选，但更可靠）
-  win.once('ready-to-show', () => {
-    // 获取主显示器的工作区域（排除任务栏等）
-    const { width: windowWidth, height: windowHeight } = win.getBounds();
-    const primaryDisplay = screen.getPrimaryDisplay();
-    const { width: screenWidth, height: screenHeight } = primaryDisplay.workAreaSize;
-
-    // 计算右下角坐标：x = 屏幕宽 - 窗口宽，y = 屏幕高 - 窗口高
-    const x = screenWidth - windowWidth;
-    const y = screenHeight - windowHeight;
-
-    win.setPosition(x, y);
-    win.show(); // 如果你用了 show: false，这里要显示
-  });
+  win.loadFile('index.html'); // 加载你的 HTML 文件
 }
 
 app.whenReady().then(createWindow);
