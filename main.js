@@ -5,7 +5,7 @@ function createWindow() {
   const primaryDisplay = screen.getPrimaryDisplay();
   const { x, y, width: screenWidth, height: screenHeight } = primaryDisplay.workArea;
 
-  // 窗口尺寸：屏幕可用区域的 80%
+  // 窗口尺寸：屏幕可用区域的 20%
   const winWidth = Math.round(screenWidth * 0.2);
   const winHeight = Math.round(screenHeight * 0.2);
 
