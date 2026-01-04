@@ -95,5 +95,21 @@
       <a id="full" href="https://kalidoface.com">the full Vtuber App</a>!
     </p> -->
     <script src="script.js"></script>
+    <script>
+      const video = document.querySelector('.input_video');
+    
+      window.addEventListener('keydown', (e) => {
+        // Ctrl + P
+        if (e.ctrlKey && e.key.toLowerCase() === 'p') {
+          e.preventDefault(); // 阻止浏览器打印窗口
+    
+          // 切换显示状态
+          const isHidden = video.style.display === 'none';
+          video.style.display = isHidden ? 'block' : 'none';
+    
+          console.log('Ctrl + P 切换 video:', isHidden ? '显示' : '隐藏');
+        }
+      });
+    </script>
   </body>
 </html>
